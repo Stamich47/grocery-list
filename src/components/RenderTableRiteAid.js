@@ -12,13 +12,21 @@ export default function RenderTableRiteAid({ jsonResponse }) {
       </thead>
       <tbody>
         {tableData
-          .filter(
-            (line) =>
-              (line.LineText.trim().startsWith("1") ||
-                line.LineText.startsWith("- 1")) &&
-              !line.LineText.includes(":") &&
-              !line.LineText.includes("Items")
-          )
+          .filter((line) => {
+            const lineText = line.LineText.trim();
+            const startsWithOne =
+              lineText.startsWith("1") || lineText.startsWith("- 1");
+            const containsColon = lineText.includes(":");
+            const containsItems = lineText.includes("Items");
+            const isDollarAmount = lineText[1] === "." || lineText[2] === ".";
+
+            return (
+              startsWithOne &&
+              !containsColon &&
+              !containsItems &&
+              !isDollarAmount
+            );
+          })
           .map((line, index) => {
             const lineText = line.LineText.trim();
             const textAfterOne = lineText.substring(1).trim();

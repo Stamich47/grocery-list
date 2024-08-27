@@ -30,8 +30,8 @@ export default function ShoppingList() {
   };
 
   return (
-    <div>
-      <h1 className="text-center mt-3">This is the Shopping List area</h1>
+    <div className="mt-4">
+      <h2 className="text-center mt-3">This is the Shopping List area</h2>
       <div className="d-flex justify-content-center">
         <form
           className="card d-inline-flex flex-row p-2 align-items-center "

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import RenderTableRiteAid from "./RenderTableRiteAid";
 
 export default function ParseReceipt() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -22,7 +23,8 @@ export default function ParseReceipt() {
     formData.append("detectOrientation", true);
     formData.append("scale", true);
     formData.append("OCREngine", "2");
-    // formData.append("isTable", true);
+    formData.append("isTable", true);
+    formData.append("isOverlayRequired", false);
 
     try {
       const response = await fetch("https://api.ocr.space/parse/image", {
@@ -35,27 +37,19 @@ export default function ParseReceipt() {
 
       setParsedText(data.ParsedResults[0].ParsedText);
       setJsonResponse(data);
-      console.log(formData);
     } catch (error) {
       console.error("Error uploading the file:", error);
     }
   };
 
   return (
-    <div>
+    <div className="d-flex flex-column align-items-center mt-4">
       <h1>Upload Receipt</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="d-inline-flex flex-column gap-2">
         <input type="file" onChange={handleFileChange} />
         <button type="submit">Upload</button>
       </form>
-      {parsedText && (
-        <div className="d-flex flex-column align-items-center">
-          <h2>Parsed Text</h2>
-          <pre>{parsedText}</pre>
-        </div>
-      )}
-      <h2>JSON Response</h2>
-      <pre>{JSON.stringify(jsonResponse, null, 2)}</pre>
+      {parsedText && <RenderTableRiteAid jsonResponse={jsonResponse} />}
     </div>
   );
 }

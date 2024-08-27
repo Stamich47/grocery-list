@@ -56,7 +56,7 @@ export default function ShoppingList() {
                   className="card my-2 p-2 d-flex flex-row flex-nowrap justify-content-between align-items-center"
                   style={{ width: "50%", minWidth: "300px" }}
                 >
-                  <h4 className="mx-2 flex-grow-1 text-wrap">{item.name}</h4>
+                  <h6 className="mx-2 flex-grow-1 text-wrap">{item.name}</h6>
                   <div className="d-flex flex-shrink-0">
                     <button
                       type="button"

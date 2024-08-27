@@ -18,6 +18,7 @@ export default function RenderTableRiteAid({ jsonResponse }) {
               lineText.startsWith("1") || lineText.startsWith("- 1");
             const containsColon = lineText.includes(":");
             const containsItems = lineText.includes("Items");
+
             const isDollarAmount = lineText[1] === "." || lineText[2] === ".";
 
             return (

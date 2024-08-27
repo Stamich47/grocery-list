@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RenderTableRiteAid from "./RenderTableRiteAid";
+import RenderShoppingItemRiteAid from "./RenderShoppingItemRiteAid";
 
 export default function ParseReceipt() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -49,7 +50,7 @@ export default function ParseReceipt() {
         <input type="file" onChange={handleFileChange} />
         <button type="submit">Upload</button>
       </form>
-      {parsedText && <RenderTableRiteAid jsonResponse={jsonResponse} />}
+      {parsedText && <RenderShoppingItemRiteAid jsonResponse={jsonResponse} />}
     </div>
   );
 }
